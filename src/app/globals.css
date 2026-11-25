@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-obsidian: #141A18;
+  --color-obsidian-card: #1D2522;
+  --color-alabaster: #F7F5F0;
+  --color-terracotta: #C69C72;
+  --color-status-free: #10B981;
+  --color-status-reserved: #F59E0B;
+  --color-status-sold: #64748B;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --bg-dark: #141A18;
+  --bg-card: #1D2522;
+  --bg-light: #F7F5F0;
+  --accent: #C69C72;
+  --status-free: #10B981;
+  --status-reserved: #F59E0B;
+  --status-sold: #64748B;
+}
+
+html {
+  background-color: #141A18;
+  color: #F7F5F0;
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  background-color: #141A18;
+  color: #F7F5F0;
+  font-family: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Contain scroll chaining inside modal dialogs & backdrop without mutating body overflow */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(10, 14, 12, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+::selection {
+  background-color: rgba(198, 156, 114, 0.35);
+  color: #F7F5F0;
+}
+
+/* Architectural ambient light animation for Hero & video fallbacks */
+@keyframes architecturalGlow {
+  0%, 100% {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(4%, 3%, 0) scale(1.08);
+    opacity: 0.72;
+  }
+}
+
+@keyframes briseSoleilDrift {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translateX(18px);
+    opacity: 0.36;
+  }
+}
+
+.animate-arch-glow {
+  animation: architecturalGlow 14s ease-in-out infinite;
+}
+
+.animate-brise-soleil {
+  animation: briseSoleilDrift 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-arch-glow,
+  .animate-brise-soleil {
+    animation: none;
+  }
+}
+
+/* Subtle architectural grid lines for dark surfaces */
+.bg-arch-grid {
+  background-image:
+    linear-gradient(to right, rgba(247, 245, 240, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(247, 245, 240, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Custom slim scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141A18;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(198, 156, 114, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 156, 114, 0.65);
+}
